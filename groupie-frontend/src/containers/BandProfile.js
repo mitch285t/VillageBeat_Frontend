@@ -3,6 +3,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+import moment from "moment";
 const BandShowURL = "http://localhost:3000/bands/";
 const userbandsURL = "http://localhost:3000/userbands";
 class BandProfile extends React.Component {
@@ -24,6 +25,7 @@ class BandProfile extends React.Component {
     })
       .then(res => res.json())
       .then(data => {
+        this.props.getstate(data);
         this.setState({
           band: data.band,
           venues: data.venues,
@@ -32,6 +34,7 @@ class BandProfile extends React.Component {
         });
       });
   }
+
   followFunction = event => {
     event.preventDefault();
     let body = this.state;
@@ -93,13 +96,13 @@ class BandProfile extends React.Component {
             <Col>
               <ul>
                 {this.state.venues.map(venue => {
-                  return <li> {venue.name}</li>;
+                  return <li key={venue.id}> {venue.name}</li>;
                 })}
               </ul>
             </Col>
             <Col>
               {this.state.shows.map(show => {
-                return show.time;
+                return moment(show.time).format(" hh:mm A, MMMM Do, YYYY ");
               })}
             </Col>
           </Row>

@@ -2,7 +2,9 @@ import React, { Component } from "react";
 import Card from "react-bootstrap/Card";
 import CardGroup from "react-bootstrap/CardGroup";
 import CardDeck from "react-bootstrap/CardGroup";
+import MainpageCard from "../components/MainpageCard.js";
 const profileURL = "http://localhost:3000/profile";
+const BandShowURL = "http://localhost:3000/bands/";
 class MainPage extends Component {
   constructor() {
     super();
@@ -26,21 +28,14 @@ class MainPage extends Component {
         });
       });
   }
+
   render() {
     return (
       <div>
         <h1>Welcome back, {window.localStorage.getItem("name")}!</h1>
         <CardDeck>
           {this.state.bands.map(band => {
-            return (
-              <Card>
-                <Card.Body>
-                  <Card.Title>{band.name}</Card.Title>
-                  <Card.Text>upcoming events will be here</Card.Text>
-                </Card.Body>
-                <Card.Footer>google will be here</Card.Footer>
-              </Card>
-            );
+            return <MainpageCard band={band.id} />;
           })}
         </CardDeck>
       </div>
