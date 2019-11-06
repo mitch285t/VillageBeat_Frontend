@@ -3,6 +3,12 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import EditProfile from "../components/editProfile.js";
+import Button from "react-bootstrap/Button";
+import addWallet from "../components/addWallet.js";
+import Alert from "react-bootstrap/Alert";
+import Form from "react-bootstrap/Form";
+
+const usersURL = "http://localhost:3000/users";
 const UserprofileURL = "http://localhost:3000/profile";
 const BandShowURL = "http://localhost:3000/bands/";
 class UserProfile extends React.Component {
@@ -10,7 +16,8 @@ class UserProfile extends React.Component {
     super();
     this.state = {
       user: [],
-      bands: []
+      bands: [],
+      wallet: 0
     };
   }
 
@@ -25,10 +32,36 @@ class UserProfile extends React.Component {
       .then(data => {
         this.setState({
           user: data.user,
-          bands: data.bands
+          bands: data.bands,
+          wallet: data.wallet
         });
       });
   }
+  // handleChange = event => {
+  //   event.persist();
+  //   this.setState({
+  //     [event.target.wallet]: event.target.value
+  //   });
+  // };
+  // handleSubmit = event => {
+  //   event.preventDefault();
+  //   let walletamount = this.state;
+  //   walletamount.wallet = parseInt(this.state.wallet);
+  //   const configOBJ = {
+  //     method: "PATCH",
+  //     headers: {
+  //       "content-type": "application/json",
+  //       accept: "application/json",
+  //       Authorization: `Bearer ${window.localStorage.getItem("token")}`
+  //     },
+  //     body: JSON.stringify(walletamount)
+  //   };
+  //   fetch(usersURL, configOBJ)
+  //     .then(res => res.json())
+  //     .then(json => {
+  //       console.log(json);
+  //     });
+  // };
 
   render() {
     return (
@@ -47,8 +80,6 @@ class UserProfile extends React.Component {
             })}
           </ul>
         </div>
-
-        <EditProfile />
       </div>
     );
   }
