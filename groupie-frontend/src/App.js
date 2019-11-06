@@ -2,7 +2,7 @@ import React from "react";
 import "./App.css";
 import Navigbar from "./containers/Navigbar.js";
 import Home from "./containers/Home.js";
-import { MyMapComponent } from "./components/MyMapComponent";
+
 function App() {
   return (
     <div>

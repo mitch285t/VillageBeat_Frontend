@@ -6,6 +6,7 @@ import Login from "../components/login.js";
 import Explore from "./Explore.js";
 import BandProfile from "./BandProfile.js";
 import UserProfile from "./UserProfile.js";
+import Goggle from "../components/Goggle.js";
 class Home extends Component {
   constructor() {
     super();
@@ -17,7 +18,6 @@ class Home extends Component {
   render() {
     return (
       <div>
-        {console.log(this.state.bandinfo)}
         <Router>
           <Route exact path="/" render={() => <div>hey welcome</div>} />
           <Route exact path="/signup" render={() => <Signup />} />
@@ -30,6 +30,7 @@ class Home extends Component {
             render={() => <BandProfile getstate={this.getstate} />}
           />
           <Route exact path="/UserProfile" render={() => <UserProfile />} />
+          <Route exact path="/GoogleMap" render={() => <Goggle />} />
         </Router>
       </div>
     );
