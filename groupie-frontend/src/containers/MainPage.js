@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-
+import Goggle from "../components/Goggle.js";
 import CardDeck from "react-bootstrap/CardGroup";
 import MainpageCard from "../components/MainpageCard.js";
 import Container from "react-bootstrap/Container";
@@ -13,7 +13,11 @@ class MainPage extends Component {
     super();
     this.state = {
       user: [],
-      bands: []
+      bands: [],
+      Clicked: false,
+      lat: 0,
+      lng: 0,
+      location: ""
     };
   }
   componentDidMount() {
@@ -31,18 +35,52 @@ class MainPage extends Component {
         });
       });
   }
-
+  handleLink = (event, lat, lng, location) => {
+    this.setState({
+      Clicked: !this.state.Clicked,
+      lat: lat,
+      lng: lng,
+      location: location
+    });
+    console.log(this.state.lat);
+    console.log(this.state.lng);
+  };
+  getshowtimes = times => {
+    console.log(times);
+  };
   render() {
     return (
       <div>
-        <h1>Welcome back, {window.localStorage.getItem("name")}!</h1>
-        <CardDeck>
-          {this.state.bands.map(band => {
-            {
-            }
-            return <MainpageCard band={band.id} />;
-          })}
-        </CardDeck>
+        {this.state.Clicked === true ? (
+          <Goggle
+            lat={this.state.lat}
+            lng={this.state.lng}
+            location={this.state.location}
+          />
+        ) : (
+          console.log("what up nerd")
+        )}
+        <br></br>
+        <br></br>
+        <div>
+          <h1>Welcome back, {window.localStorage.getItem("name")}!</h1>
+
+          <div>
+            <CardDeck>
+              {this.state.bands.map(band => {
+                {
+                }
+                return (
+                  <MainpageCard
+                    band={band.id}
+                    handleLink={this.handleLink}
+                    time={this.getshowtimes}
+                  />
+                );
+              })}
+            </CardDeck>
+          </div>
+        </div>
       </div>
     );
   }
