@@ -58,28 +58,6 @@ class BandProfile extends React.Component {
     window.location.assign("http://localhost:3001/MainPage");
   };
 
-  //   handleSubmit = event => {
-  //     event.preventDefault();
-  //     let body = this.state;
-  //     body.user_id = parseInt(window.localStorage.getItem("id"));
-  //     body.round_id = parseInt(this.props.round.id);
-  //     const configObj = {
-  //       method: "POST",
-  //       headers: {
-  //         "content-type": "application/json",
-  //         accept: "application/json",
-  //         Authorization: `Bearer ${window.localStorage.getItem("token")}`
-  //       },
-  //       body: JSON.stringify(body)
-  //     };
-  //     fetch(betsURL, configObj)
-  //       .then(res => res.json())
-  //       .then(json => {
-  //         console.log(json);
-  //       })
-  //       .catch(error => console.log(error));
-  //     this.props.viewRound();
-  //   };
   render() {
     return (
       <div>
@@ -96,17 +74,26 @@ class BandProfile extends React.Component {
             <Col>
               <ul>
                 {this.state.venues.map(venue => {
-                  return <li key={venue.id}> {venue.name}</li>;
+                  return (
+                    <li key={venue.id}>
+                      {venue.name}{" "}
+                      {this.state.shows.map(show => {
+                        if (show.venue_id === venue.id) {
+                          return moment(show.time).format(
+                            " hh:mm A, MMMM Do, YYYY "
+                          );
+                        }
+                      })}
+                      ;
+                    </li>
+                  );
                 })}
               </ul>
             </Col>
-            <Col>
-              {this.state.shows.map(show => {
-                return moment(show.time).format(" hh:mm A, MMMM Do, YYYY ");
-              })}
-            </Col>
+            <Col></Col>
           </Row>
         </Container>
+
         <Button
           variant="outline-dark"
           onClick={event => this.followFunction(event)}

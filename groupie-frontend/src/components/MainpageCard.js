@@ -5,6 +5,7 @@ import moment from "moment";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
+
 const BandShowURL = "http://localhost:3000/bands/";
 
 class MainpageCard extends React.Component {
@@ -36,21 +37,17 @@ class MainpageCard extends React.Component {
         });
       });
   }
-  // showund = () => {
-  //   let arr = [];
-  //   const Moment = require("moment");
-  //   console.log(this.state.showdet);
-  //   arr = this.state.showdet.sort(
-  //     (a, b) =>
-  //       new Moment(a.time).format("DDYYYYMM") -
-  //       new Moment(b.time).format("DDYYYYMM")
-  //   );
-  //   console.log(arr);
-  // };
+
   linkToBand = event => {
     window.localStorage.setItem("bandID", event.target.id);
     window.location.assign(`http://localhost:3001/BandProfile`);
   };
+
+  // handleLink = (event, lat, lng) => {
+  //   console.log(event.target);
+  //   console.log(lat);
+  //   console.log(lng);
+  // };
   render() {
     return (
       <div>
@@ -64,25 +61,42 @@ class MainpageCard extends React.Component {
             </Card.Subtitle>
             <Card.Text>
               <ul>
+                <br></br>{" "}
                 {this.state.venuedet.map(venue => {
+                  console.log(venue);
                   return (
                     <li>
                       {venue.name} | {venue.location}
-                      {console.log(venue.lat, venue.lng)}
-                      <br></br>
                       {this.state.showdet.map(show => {
+                        console.log(show);
                         if (show.venue_id === venue.id)
                           return moment(show.time).format(
                             " hh:mm A, MMMM Do, YYYY "
                           );
-                      })}
+                      })}{" "}
+                      <Button
+                        variant="outline-dark"
+                        onClick={event =>
+                          this.props.handleLink(
+                            event,
+                            venue.lat,
+                            venue.lng,
+                            venue.location
+                          )
+                        }
+                        size="sm"
+                      >
+                        Where is it?
+                      </Button>
                     </li>
                   );
                 })}
+                <br></br>
               </ul>
             </Card.Text>
             <Card.Footer>
               <Button
+                variant="outline-dark"
                 id={this.state.banddet.id}
                 onClick={event => this.linkToBand(event)}
               >
