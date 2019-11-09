@@ -35,13 +35,14 @@ class MainpageCard extends React.Component {
           venuedet: data.venues,
           genredet: data.genres
         });
+        // this.props.time(data.shows);
       });
   }
 
-  linkToBand = event => {
-    window.localStorage.setItem("bandID", event.target.id);
-    window.location.assign(`http://localhost:3001/BandProfile`);
-  };
+  // linkToBand = event => {
+  //   window.localStorage.setItem("bandID", event.target.id);
+  //   window.location.assign(`http://localhost:3001/BandProfile`);
+  // };
 
   // handleLink = (event, lat, lng) => {
   //   console.log(event.target);
@@ -63,12 +64,10 @@ class MainpageCard extends React.Component {
               <ul>
                 <br></br>{" "}
                 {this.state.venuedet.map(venue => {
-                  console.log(venue);
                   return (
                     <li>
                       {venue.name} | {venue.location}
                       {this.state.showdet.map(show => {
-                        console.log(show);
                         if (show.venue_id === venue.id)
                           return moment(show.time).format(
                             " hh:mm A, MMMM Do, YYYY "

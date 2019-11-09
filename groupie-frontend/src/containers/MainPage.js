@@ -5,9 +5,13 @@ import MainpageCard from "../components/MainpageCard.js";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Testing from "../components/Testing.js";
+import moment from "moment";
+import _ from "lodash";
+import date from "date-and-time";
 const profileURL = "http://localhost:3000/profile";
 const BandShowURL = "http://localhost:3000/bands/";
-
+let arrays = [];
 class MainPage extends Component {
   constructor() {
     super();
@@ -17,7 +21,9 @@ class MainPage extends Component {
       Clicked: false,
       lat: 0,
       lng: 0,
-      location: ""
+      location: "",
+      shows: [],
+      venues: []
     };
   }
   componentDidMount() {
@@ -45,9 +51,19 @@ class MainPage extends Component {
     console.log(this.state.lat);
     console.log(this.state.lng);
   };
-  getshowtimes = times => {
-    console.log(times);
-  };
+
+  // getshowtimes = times => {
+  //   arrays.push(times);
+  //   let parsed = [];
+  //   let merged = [].concat.apply([], arrays);
+  //   merged.map(merge => {
+  //     // parsed.push(new Date(merge.time));
+  //     parsed.push(moment.utc(merge.time).format("MM/DD/YYYY"));
+  //   });
+  //   parsed.map(item => {
+  //     console.log(item.parse;
+  //   });
+  // };
   render() {
     return (
       <div>
@@ -67,17 +83,22 @@ class MainPage extends Component {
 
           <div>
             <CardDeck>
-              {this.state.bands.map(band => {
+              {/* {this.state.bands.map(band => {
                 {
                 }
                 return (
                   <MainpageCard
                     band={band.id}
                     handleLink={this.handleLink}
-                    time={this.getshowtimes}
-                  />
-                );
-              })}
+                    // time={this.getshowtimes}
+                  /> */}
+              <Testing
+                bands={this.state.bands}
+                venues={this.state.venues}
+                handleLink={this.handleLink}
+              />
+              {/* );
+              })} */}
             </CardDeck>
           </div>
         </div>
