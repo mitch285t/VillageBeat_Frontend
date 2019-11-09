@@ -53,8 +53,8 @@ class AddWallet extends Component {
         this.setState({
           wallet: json.wallet
         });
+        window.location.reload();
       });
-    return this.toggleModal;
   };
 
   render() {
@@ -62,7 +62,7 @@ class AddWallet extends Component {
     return (
       <div>
         <div>
-          <Button onClick={this.toggleModal}>hello</Button>
+          <Button onClick={this.toggleModal}>add Funds!</Button>
         </div>
         <Modal show={this.state.modalIsOpen}>
           <ModalHeader>Add Funds</ModalHeader>

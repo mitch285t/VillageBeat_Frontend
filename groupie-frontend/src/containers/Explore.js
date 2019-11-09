@@ -2,6 +2,9 @@ import React from "react";
 import BandCard from "../components/bandCard.js";
 import Breadcrumb from "react-bootstrap/Breadcrumb";
 import Search from "../components/Search";
+import ButtonGroup from "react-bootstrap/ButtonGroup";
+import Button from "react-bootstrap/Button";
+
 const bandsURL = "http://localhost:3000/bands";
 
 class Explore extends React.Component {
@@ -30,6 +33,14 @@ class Explore extends React.Component {
     });
   };
 
+  sortByName = bands => {
+    bands.sort(function(a, b) {
+      let textA = a.name.toLowerCase();
+      let textB = b.name.toLowerCase();
+      return textA < textB ? -1 : textA > textB ? 1 : 0;
+    });
+  };
+
   handleClick = event => {
     window.localStorage.setItem("bandID", event.target.id);
     console.log(window.localStorage.getItem("bandID"));
@@ -44,6 +55,7 @@ class Explore extends React.Component {
     })
       .then(res => res.json())
       .then(data => {
+        this.sortByName(data);
         this.setState({
           user: window.localStorage.getItem("id"),
           bands: data
@@ -59,7 +71,9 @@ class Explore extends React.Component {
           bands={this.state.bands}
           search={this.state.search}
           value={this.state.value}
+          sortByName={this.sortByName}
         />
+        <ButtonGroup></ButtonGroup>
         <BandCard
           handleClick={this.handleClick}
           bands={this.state.value === "" ? this.state.bands : this.state.search}
