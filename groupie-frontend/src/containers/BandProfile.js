@@ -60,7 +60,7 @@ class BandProfile extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="band_profile">
         <Container>
           <Row>
             <Col>{this.state.band.name}</Col>

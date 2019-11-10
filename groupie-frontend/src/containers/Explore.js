@@ -25,7 +25,9 @@ class Explore extends React.Component {
       e.target.value === ""
         ? this.state.bands
         : result.filter(band => {
-            return band.name.includes(e.target.value);
+            return band.name
+              .toLowerCase()
+              .includes(e.target.value.toLowerCase());
           });
     this.setState({
       search: result,
@@ -65,7 +67,7 @@ class Explore extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className="explore_background">
         <Search
           handleChange={this.handleChange}
           bands={this.state.bands}

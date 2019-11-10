@@ -8,11 +8,15 @@ class BandInfo extends React.Component {
         id={this.props.band.id}
         onClick={event => this.props.handleClick(event)}
       >
-        <Card key={this.props.band.id}>
+        <Card
+          className="card-footer"
+          border="dark"
+          text="white"
+          key={this.props.band.id}
+        >
           <Card.Body id={this.props.band.id}>
             <Card.Text>{this.props.band.name}</Card.Text>
           </Card.Body>
-          <Card.Footer></Card.Footer>
         </Card>
         {console.log(this.props.band.id)}
       </div>

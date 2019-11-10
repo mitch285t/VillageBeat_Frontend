@@ -3,6 +3,9 @@ import moment from "moment";
 import Card from "react-bootstrap/Card";
 import VenuesList from "./VenuesList.js";
 import Goggle from "./Goggle.js";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 const showsURL = "http://localhost:3000/shows";
 let array = [];
 class Testing extends React.Component {
@@ -30,30 +33,39 @@ class Testing extends React.Component {
 
   render() {
     return (
-      <div>
+      <>
         {this.state.shows.map(show => {
           for (let i = 0; i < this.props.bands.length; i++) {
             if (this.props.bands[i].id === show.band_id) {
               return (
-                <Card>
-                  <Card.Body>
-                    <Card.Title>
-                      {moment(show.time).format(" hh:mm A, MMMM Do, YYYY ")}
-                    </Card.Title>
-                    <Card.Text>{this.props.bands[i].name}</Card.Text>
+                <Container>
+                  <Row>
+                    <Col>
+                      <Card className="card-footer" border="dark" text="white">
+                        <Card.Body>
+                          <Card.Title>
+                            {`${moment(show.time).format(
+                              " hh:mm A, MMMM Do, YYYY "
+                            )}`}
+                          </Card.Title>
+                          <Card.Text>{this.props.bands[i].name}</Card.Text>
 
-                    <VenuesList
-                      show={show}
-                      band={this.props.bands[i]}
-                      handleLink={this.props.handleLink}
-                    />
-                  </Card.Body>
-                </Card>
+                          <VenuesList
+                            show={show}
+                            band={this.props.bands[i]}
+                            handleLink={this.props.handleLink}
+                          />
+                        </Card.Body>
+                        <br />
+                      </Card>
+                    </Col>
+                  </Row>
+                </Container>
               );
             }
           }
         })}
-      </div>
+      </>
     );
   }
 }

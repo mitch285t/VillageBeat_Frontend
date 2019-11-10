@@ -34,7 +34,7 @@ class VenuesList extends React.Component {
                 {" "}
                 {`${venue.name} / ${venue.location}`}
                 <Button
-                  variant="outline-dark"
+                  variant="outline-light"
                   id={venue.id}
                   onClick={event =>
                     this.props.handleLink(
