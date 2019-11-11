@@ -1,16 +1,19 @@
 import React from "react";
 import "./App.css";
+
 import Navigbar from "./containers/Navigbar.js";
 import Home from "./containers/Home.js";
 
 function App() {
   return (
     <div>
-      <Navigbar />
-      <div>
+      <>
+        <Navigbar />
+      </>
+
+      <>
         <Home />
-        <div></div>
-      </div>
+      </>
     </div>
   );
 }

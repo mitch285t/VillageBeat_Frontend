@@ -6,7 +6,7 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Button from "react-bootstrap/Button";
 
 const bandsURL = "http://localhost:3000/bands";
-
+const genresURL = "http://localhost:3000/genres";
 class Explore extends React.Component {
   constructor() {
     super();
@@ -25,7 +25,9 @@ class Explore extends React.Component {
       e.target.value === ""
         ? this.state.bands
         : result.filter(band => {
-            return band.name.includes(e.target.value);
+            return band.name
+              .toLowerCase()
+              .includes(e.target.value.toLowerCase());
           });
     this.setState({
       search: result,
@@ -60,12 +62,13 @@ class Explore extends React.Component {
           user: window.localStorage.getItem("id"),
           bands: data
         });
+        console.log(data);
       });
   }
 
   render() {
     return (
-      <div>
+      <div className="explore_background">
         <Search
           handleChange={this.handleChange}
           bands={this.state.bands}

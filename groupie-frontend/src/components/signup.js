@@ -1,7 +1,10 @@
 import React from "react";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
-
+import Modal from "react-bootstrap/Modal";
+import ModalHeader from "react-bootstrap/ModalHeader";
+import ModalBody from "react-bootstrap/ModalBody";
+import ModalFooter from "react-bootstrap/ModalFooter";
 const usersURL = "http://localhost:3000/users";
 
 class Signup extends React.Component {
@@ -11,7 +14,8 @@ class Signup extends React.Component {
       name: "",
       email: "",
       password: "",
-      password_confirmation: ""
+      password_confirmation: "",
+      Modal: true
     };
   }
   handleChange = event => {
@@ -43,55 +47,78 @@ class Signup extends React.Component {
       password_confirmation: ""
     });
   };
+  handleClose = () => {
+    this.setState({
+      Modal: false
+    });
+  };
   render() {
     return (
-      <form className="background" onSubmit={event => this.handleSubmit(event)}>
-        <Form.Group>
-          <div>
-            <Form.Control
-              type="text"
-              name="name"
-              onChange={event => this.handleChange(event)}
-              value={this.state.name}
-              placeholder="name"
-            />
-            <Form.Label>name</Form.Label>
-          </div>
-          <div>
-            <Form.Control
-              type="text"
-              name="email"
-              onChange={event => this.handleChange(event)}
-              value={this.state.email}
-              placeholder="E-mail"
-            />
-            <Form.Label>E-mail</Form.Label>
-          </div>
-          <div>
-            <Form.Control
-              type="password"
-              name="password"
-              onChange={event => this.handleChange(event)}
-              value={this.state.password}
-              placeholder="Password"
-            />
-            <Form.Label>Password</Form.Label>
-          </div>
-          <div>
-            <Form.Control
-              type="password"
-              name="password_confirmation"
-              placeholder="Password confirmation"
-              value={this.state.password_confirmation}
-              onChange={event => this.handleChange(event)}
-            />
-            <Form.Label>Password confirmation</Form.Label>
-          </div>
-          <Button variant="secondary" type="submit" value="Sign up">
-            Submit
-          </Button>
-        </Form.Group>
-      </form>
+      <div className="background">
+        <Modal
+          animation={true}
+          show={this.state.Modal}
+          onHide={this.handleClose}
+        >
+          <form
+            className="modal_color"
+            onSubmit={event => this.handleSubmit(event)}
+          >
+            {" "}
+            <ModalHeader>Signup</ModalHeader>
+            <Form.Group>
+              <ModalBody>
+                <div>
+                  <Form.Control
+                    type="text"
+                    name="name"
+                    onChange={event => this.handleChange(event)}
+                    value={this.state.name}
+                    placeholder="name"
+                  />
+
+                  <Form.Label>name</Form.Label>
+                </div>
+                <div>
+                  <Form.Control
+                    type="text"
+                    name="email"
+                    onChange={event => this.handleChange(event)}
+                    value={this.state.email}
+                    placeholder="E-mail"
+                  />
+                  <Form.Label>E-mail</Form.Label>
+                </div>
+                <div>
+                  <Form.Control
+                    type="password"
+                    name="password"
+                    onChange={event => this.handleChange(event)}
+                    value={this.state.password}
+                    placeholder="Password"
+                  />
+                  <Form.Label>Password</Form.Label>
+                </div>
+                <div>
+                  <Form.Control
+                    type="password"
+                    name="password_confirmation"
+                    placeholder="Password confirmation"
+                    value={this.state.password_confirmation}
+                    onChange={event => this.handleChange(event)}
+                  />
+                  <Form.Label>Password confirmation</Form.Label>
+                </div>
+              </ModalBody>
+              <ModalFooter>
+                <Button variant="outline-dark" type="submit" value="Sign up">
+                  Submit
+                </Button>
+              </ModalFooter>
+            </Form.Group>
+          </form>
+        </Modal>
+      </div>
     );
   }
 }

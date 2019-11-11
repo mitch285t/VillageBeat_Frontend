@@ -52,7 +52,11 @@ class MainpageCard extends React.Component {
   render() {
     return (
       <div>
-        <Card id={this.state.banddet.id}>
+        <Card
+          className="text-center"
+          style={{ width: "18rem" }}
+          id={this.state.banddet.id}
+        >
           <Card.Body>
             <Card.Title>{this.state.banddet.name}</Card.Title>
             <Card.Subtitle>

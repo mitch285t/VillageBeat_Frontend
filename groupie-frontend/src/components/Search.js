@@ -5,6 +5,7 @@ import Form from "react-bootstrap/Form";
 const Search = props => {
   return (
     <InputGroup className="mb-3">
+      {" "}
       <Form.Control
         placeholder="Search"
         input="text"
@@ -12,7 +13,7 @@ const Search = props => {
         aria-describedby="basic-addon2"
         value={props.value}
         onChange={event => props.handleChange(event)}
-      />
+      />{" "}
     </InputGroup>
   );
 };

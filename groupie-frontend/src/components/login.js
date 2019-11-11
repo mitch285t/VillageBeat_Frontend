@@ -1,5 +1,9 @@
 import React, { Component } from "react";
-
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
+import ModalHeader from "react-bootstrap/ModalHeader";
+import ModalBody from "react-bootstrap/ModalBody";
+import ModalFooter from "react-bootstrap/ModalFooter";
 import Form from "react-bootstrap/Form";
 const authURL = "http://localhost:3000/login";
 
@@ -9,7 +13,8 @@ class Login extends Component {
 
     this.state = {
       name: "",
-      password: ""
+      password: "",
+      modal: true
     };
   }
   handleChange = event => {
@@ -26,7 +31,7 @@ class Login extends Component {
       },
       body: JSON.stringify(this.state)
     };
-    console.log(this.state);
+
     fetch(authURL, configObj)
       .then(res => res.json())
       .then(json => {
@@ -46,34 +51,61 @@ class Login extends Component {
       password_confirmation: ""
     });
   };
+  handleClose = () => {
+    this.setState({
+      modal: false
+    });
+  };
   render() {
     return (
-      <div>
-        <form onSubmit={event => this.handleSubmit(event)}>
-          <Form.Group>
-            <div>
-              <Form.Control
-                type="text"
-                name="name"
-                onChange={event => this.handleChange(event)}
-                value={this.state.name}
-                placeholder="name"
-              />
-              <Form.Label htmlFor="name">name</Form.Label>
-            </div>
-            <div>
-              <Form.Control
-                type="password"
-                name="password"
-                onChange={event => this.handleChange(event)}
-                value={this.state.password}
-                placeholder="Password"
-              />
-              <Form.Label htmlFor="password">Password</Form.Label>
-            </div>
-            <input type="submit" value="Log in" />
-          </Form.Group>
-        </form>
+      <div className="background">
+        <Modal
+          animation={true}
+          show={this.state.modal}
+          onHide={this.handleClose}
+        >
+          <form
+            className="modal_color"
+            onSubmit={event => this.handleSubmit(event)}
+          >
+            <ModalHeader>Login</ModalHeader>
+
+            <Form.Group>
+              <ModalBody>
+                <div>
+                  <Form.Control
+                    type="text"
+                    name="name"
+                    onChange={event => this.handleChange(event)}
+                    value={this.state.name}
+                    placeholder="name"
+                  />
+                  <Form.Label htmlFor="name">name</Form.Label>
+                </div>
+                <div>
+                  <Form.Control
+                    type="password"
+                    name="password"
+                    onChange={event => this.handleChange(event)}
+                    value={this.state.password}
+                    placeholder="Password"
+                  />
+                  <Form.Label htmlFor="password">Password</Form.Label>
+                </div>
+              </ModalBody>
+              <ModalFooter>
+                <Button
+                  variant="outline-dark"
+                  input
+                  type="submit"
+                  value="Log in"
+                >
+                  Log in!
+                </Button>
+              </ModalFooter>
+            </Form.Group>
+          </form>
+        </Modal>
       </div>
     );
   }
