@@ -12,13 +12,9 @@ class AddWallet extends Component {
     super();
     this.state = {
       modalIsOpen: false,
-      wallet: 0
+      wallet: 0,
+      AddAmount: 0
     };
-  }
-  componentDidMount() {
-    this.setState({
-      wallet: this.props.wallet
-    });
   }
 
   toggleModal = () => {
@@ -30,12 +26,15 @@ class AddWallet extends Component {
   handleChange = event => {
     event.persist();
     this.setState({
-      wallet: event.target.value
+      AddAmount: event.target.value
     });
   };
   handleSubmit = event => {
+    let add = parseInt(this.state.AddAmount);
+    let userwallet = parseInt(this.props.wallet);
+    let total = parseInt(add + userwallet);
     let body = this.state;
-    body.wallet = parseInt(this.state.wallet);
+    body.wallet = parseInt(total);
     body.id = parseInt(window.localStorage.getItem("id"));
     let configObj = {
       method: "PATCH",
@@ -50,6 +49,7 @@ class AddWallet extends Component {
     fetch(`${usersURL}${window.localStorage.getItem("id")}`, configObj)
       .then(res => res.json())
       .then(json => {
+        console.log(json);
         this.setState({
           wallet: json.wallet
         });
@@ -70,10 +70,10 @@ class AddWallet extends Component {
             <form onSubmit={event => this.handleSubmit(event)}>
               <Form.Control
                 type="integer"
-                name="wallet"
+                name="AddAmount"
                 onChange={event => this.handleChange(event)}
-                value={this.state.wallet}
-                placeholder="wallet"
+                value={this.state.AddAmount}
+                placeholder="Add Amount"
               />
               <Form.Label>Wallet Amount</Form.Label>
             </form>

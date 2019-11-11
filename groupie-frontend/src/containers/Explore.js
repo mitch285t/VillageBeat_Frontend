@@ -6,7 +6,7 @@ import ButtonGroup from "react-bootstrap/ButtonGroup";
 import Button from "react-bootstrap/Button";
 
 const bandsURL = "http://localhost:3000/bands";
-
+const genresURL = "http://localhost:3000/genres";
 class Explore extends React.Component {
   constructor() {
     super();
@@ -62,6 +62,7 @@ class Explore extends React.Component {
           user: window.localStorage.getItem("id"),
           bands: data
         });
+        console.log(data);
       });
   }
 

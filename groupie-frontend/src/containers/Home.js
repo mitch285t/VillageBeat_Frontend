@@ -18,9 +18,13 @@ class Home extends Component {
   getstate = info => {};
   render() {
     return (
-      <div className="background">
+      <div>
         <Router>
-          <Route exact path="/" render={() => <div></div>} />
+          <Route
+            exact
+            path="/"
+            render={() => <div className="background"></div>}
+          />
           <Route exact path="/signup" render={() => <Signup />} />
           <Route exact path="/login" render={() => <Login />} />
           <Route exact path="/MainPage" render={() => <MainPage />} />

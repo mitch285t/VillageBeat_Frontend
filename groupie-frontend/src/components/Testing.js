@@ -48,7 +48,10 @@ class Testing extends React.Component {
                               " hh:mm A, MMMM Do, YYYY "
                             )}`}
                           </Card.Title>
-                          <Card.Text>{this.props.bands[i].name}</Card.Text>
+                          <Card.Text>
+                            {this.props.bands[i].name}{" "}
+                            {this.props.bands[i].genres}
+                          </Card.Text>
 
                           <VenuesList
                             show={show}

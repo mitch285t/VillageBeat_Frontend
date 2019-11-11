@@ -51,10 +51,19 @@ class Login extends Component {
       password_confirmation: ""
     });
   };
+  handleClose = () => {
+    this.setState({
+      modal: false
+    });
+  };
   render() {
     return (
-      <div>
-        <Modal show={this.state.modal}>
+      <div className="background">
+        <Modal
+          animation={true}
+          show={this.state.modal}
+          onHide={this.handleClose}
+        >
           <form
             className="modal_color"
             onSubmit={event => this.handleSubmit(event)}

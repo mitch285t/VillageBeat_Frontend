@@ -22,7 +22,7 @@ class Navigbar extends React.Component {
               <Nav className="mr-auto">
                 <Nav.Link href="/Explore">Explore</Nav.Link>
                 <Nav.Link href="/UserProfile">Profile </Nav.Link>
-                <Nav.Link href="/GoogleMap">google </Nav.Link>
+
                 <Nav.Link
                   href="/logout"
                   onClick={event => this.handleLogout(event)}
@@ -42,9 +42,7 @@ class Navigbar extends React.Component {
             <Navbar.Toggle aria-controls="basic-navbar-nav" />
             <Navbar.Collapse id="basic-navbar-nav">
               <Nav>
-                <Nav.Link className="font_color" href="/Signup">
-                  Sign up
-                </Nav.Link>
+                <Nav.Link href="/Signup">Sign up</Nav.Link>
                 <Nav.Link href="/Login">Log in</Nav.Link>
               </Nav>
             </Navbar.Collapse>

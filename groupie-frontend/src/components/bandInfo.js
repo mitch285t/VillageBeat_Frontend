@@ -17,6 +17,9 @@ class BandInfo extends React.Component {
           <Card.Body id={this.props.band.id}>
             <Card.Text>{this.props.band.name}</Card.Text>
           </Card.Body>
+          <Card.Body>
+            <Card.Text>{this.props.band.genres}</Card.Text>
+          </Card.Body>
         </Card>
         {console.log(this.props.band.id)}
       </div>

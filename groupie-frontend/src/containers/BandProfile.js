@@ -4,6 +4,7 @@ import Row from "react-bootstrap/row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import moment from "moment";
+import Tip from "../components/Tip.js";
 const BandShowURL = "http://localhost:3000/bands/";
 const userbandsURL = "http://localhost:3000/userbands";
 class BandProfile extends React.Component {
@@ -13,7 +14,8 @@ class BandProfile extends React.Component {
       band: [],
       venues: [],
       shows: [],
-      genres: []
+      genres: [],
+      love: false
     };
   }
   componentDidMount() {
@@ -61,45 +63,54 @@ class BandProfile extends React.Component {
   render() {
     return (
       <div className="band_profile">
-        <Container>
-          <Row>
-            <Col>{this.state.band.name}</Col>
-            <Col>
-              {this.state.genres.map(genre => {
-                return genre.name;
-              })}
-            </Col>
-          </Row>
-          <Row>
-            <Col>
-              <ul>
-                {this.state.venues.map(venue => {
-                  return (
-                    <li key={venue.id}>
-                      {venue.name}{" "}
-                      {this.state.shows.map(show => {
-                        if (show.venue_id === venue.id) {
-                          return moment(show.time).format(
-                            " hh:mm A, MMMM Do, YYYY "
-                          );
-                        }
-                      })}
-                      ;
-                    </li>
-                  );
+        <div>
+          <Container>
+            <Row>
+              <Col>
+                {this.state.band.name}
+                <br></br>
+                {this.state.band.desc}
+              </Col>
+              <Col>
+                {this.state.genres.map(genre => {
+                  return genre.name;
                 })}
-              </ul>
-            </Col>
-            <Col></Col>
-          </Row>
-        </Container>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <ul>
+                  {this.state.venues.map(venue => {
+                    return (
+                      <li key={venue.id}>
+                        {venue.name}{" "}
+                        {this.state.shows.map(show => {
+                          if (show.venue_id === venue.id) {
+                            return moment(show.time).format(
+                              " hh:mm A, MMMM Do, YYYY "
+                            );
+                          }
+                        })}
+                      </li>
+                    );
+                  })}
+                </ul>
+                {`Love given $ ${this.state.band.wallet}`}
+              </Col>
+              <Col></Col>
+            </Row>
+          </Container>
 
-        <Button
-          variant="outline-dark"
-          onClick={event => this.followFunction(event)}
-        >
-          Follow!
-        </Button>
+          <Button
+            variant="outline-dark"
+            onClick={event => this.followFunction(event)}
+          >
+            Follow!
+          </Button>
+        </div>
+        <>
+          <Tip band={this.state.band} followFunction={this.followFunction} />
+        </>
       </div>
     );
   }
