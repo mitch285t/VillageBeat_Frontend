@@ -1,5 +1,8 @@
 .App {
   text-align: center;
+  font-family: Impact, Charcoal, sans-serif;
+  letter-spacing: 1.6px;
+  word-spacing: 3.2px;
 }
 
 .App-logo {
@@ -31,7 +34,9 @@
 .navbar_color {
   background-color: #000000;
   color: #ffffff;
-  opacity: 1;
+  font-family: Impact, Charcoal, sans-serif;
+  letter-spacing: 1.6px;
+  word-spacing: 3.2px;
 }
 .modal_color {
   background-color: #000000;
@@ -45,13 +50,33 @@
 }
 .card {
   background-color: rgba(245, 245, 245, 0.4);
-  opacity: 1;
+  font-family: Impact, Charcoal, sans-serif;
+  letter-spacing: 1.6px;
+  word-spacing: 3.2px;
 }
-.card-header,
+
 .card-footer {
-  opacity: 1;
   align-content: "center";
+  min-height: 200px;
+  min-width: 200px;
+  border-radius: 20px !important;
+  font-family: Impact, Charcoal, sans-serif;
+  letter-spacing: 1.6px;
+  word-spacing: 3.2px;
+  color: black !important
+  ;
+
+  /* background-color: rgb(0, 0, 0, 0.9); */
 }
+.card-footer .card-edge {
+  align-content: "center";
+  min-height: 200px;
+  min-width: 200px;
+  border-radius: 20px;
+
+  /* background-color: rgb(0, 0, 0, 0.9); */
+}
+
 .profile_background {
   background-image: url("./band.jpeg");
   min-height: 100vh;
@@ -69,7 +94,86 @@
   max-height: 100%;
   background-image: url("./Bandprofile.jpg");
   min-height: 100vh;
+  font-family: Impact, Charcoal, sans-serif;
+  letter-spacing: 1.6px;
+  word-spacing: 3.2px;
 }
 .footer_color {
   color: #ffffff;
+}
+.card_image {
+  width: 50%;
+  height: 25%;
+}
+.card-img-top {
+  width: 100%;
+  height: 8vw;
+  object-fit: cover;
+}
+.search {
+  max-width: 15%;
+  max-height: 100%;
+  font-family: Impact, Charcoal, sans-serif;
+  letter-spacing: 1.6px;
+  word-spacing: 3.2px;
+}
+.mainpage_card {
+  opacity: 0.9;
+  font-family: Impact, Charcoal, sans-serif;
+  letter-spacing: 1.6px;
+  word-spacing: 3.2px;
+}
+
+.col-sm-3 .jumbotron {
+  padding: 4rem 2rem;
+  background-color: #adb5bd5e;
+  font-family: Impact, Charcoal, sans-serif;
+  letter-spacing: 1.6px;
+  word-spacing: 3.2px;
+}
+.welcome {
+  font-size: 2.5rem;
+  background: #ff00004d;
+  width: 30%;
+  text-align-last: center;
+  color: white;
+  font-family: Impact, Charcoal, sans-serif;
+  letter-spacing: 1.6px;
+  word-spacing: 3.2px;
+
+  border-radius: 20px;
+}
+.band-jumbotron {
+  background-color: #5406067a !important;
+  border-radius: 0.9rem !important;
+}
+.tip-button {
+  color: #2b2b2b;
+}
+.genre-back {
+  background-color: rgba(82, 70, 70, 0.664) !important;
+  border-radius: 0.2rem !important;
+  text-align-last: center;
+  font-size: xx-large;
+  width: 25% !important;
+}
+.info-back {
+  background-color: rgba(82, 70, 70, 0.664) !important;
+  border-radius: 0.2rem !important;
+  text-align-last: center;
+}
+.venue-back {
+  background-color: rgba(82, 70, 70, 0.664) !important;
+  border-radius: 0.2rem !important;
+  text-align-last: center;
+  width: 20% !important;
+}
+body {
+  opacity: 1;
+  transition: 1s opacity;
+}
+
+body.fade {
+  opacity: 0;
+  transition: none;
 }

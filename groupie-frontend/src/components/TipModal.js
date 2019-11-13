@@ -5,8 +5,11 @@ import ModalBody from "react-bootstrap/ModalBody";
 import ModalFooter from "react-bootstrap/ModalFooter";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Alert from "react-bootstrap/Alert";
+
 const BandShowURL = "http://localhost:3000/bands/";
 const userURL = "http://localhost:3000/users/";
+
 class TipModal extends React.Component {
   constructor() {
     super();
@@ -49,21 +52,25 @@ class TipModal extends React.Component {
         console.log(json);
       });
   };
-
-  handleSubmit = event => {
-    event.preventDefault();
-    // console.log(typeof this.state.TipAmount);
-    // console.log(this.props.userWallet);
-    this.theFetch();
-    this.theuserfetch();
-    this.props.followFunction(event);
+  modalToggle = event => {
     this.setState({
       modal: !this.state.modal
     });
   };
 
+  handleSubmit = event => {
+    event.preventDefault();
+    this.props.followFunction(event);
+    // console.log(typeof this.state.TipAmount);
+    // console.log(this.props.userWallet);
+    console.log("hande submit has been called");
+    this.theFetch();
+    this.modalToggle("string");
+    // this.theuserfetch();
+  };
+
   theFetch = () => {
-    if (this.props.userWallet >= this.state.TipAmount) {
+    if (parseInt(this.props.userWallet) >= parseInt(this.state.TipAmount)) {
       let tip = parseInt(this.state.TipAmount);
       let bandwallet = parseInt(this.props.band.wallet);
       let total = parseInt(tip + bandwallet);
@@ -84,7 +91,14 @@ class TipModal extends React.Component {
         .then(json => {
           console.log(json);
         });
+      this.theuserfetch();
+    } else {
+      alert("not enough cash");
     }
+  };
+  handleClose = event => {
+    console.log(event);
+    window.location.reload(true);
   };
 
   render() {
@@ -92,29 +106,22 @@ class TipModal extends React.Component {
       <div>
         {console.log(this.state.TipAmount)}
         <Modal show={this.state.modal} animation={true}>
-          <ModalHeader>Be Groovy send some Cash </ModalHeader>
-          <Form.Group
-            onSubmit={event => {
-              this.handleSubmit(event);
-            }}
-          >
-            {" "}
-            <ModalBody>
-              <Form onSubmit={event => this.handleSubmit(event)}>
-                <Form.Control
-                  type="integer"
-                  name="tip"
-                  onChange={event => this.handleChange(event)}
-                  value={this.state.tipAmount}
-                  placeholder="tip"
-                />
-                <Button variant="outline-dark" input type="submit" value="tip">
-                  Tip!
-                </Button>
-                <Button>Close</Button>
-              </Form>
-            </ModalBody>{" "}
-          </Form.Group>
+          <ModalHeader>Be Groovy send some Cash </ModalHeader>{" "}
+          <ModalBody>
+            <Form onSubmit={event => this.handleSubmit(event)}>
+              <Form.Control
+                type="integer"
+                name="tip"
+                onChange={event => this.handleChange(event)}
+                value={this.state.tipAmount}
+                placeholder="tip"
+              />
+              <Button variant="outline-dark" input type="submit" value="tip">
+                Tip!/Follow!
+              </Button>
+              <Button onClick={event => this.modalToggle(event)}>Close</Button>
+            </Form>
+          </ModalBody>{" "}
         </Modal>
       </div>
     );

@@ -4,7 +4,7 @@ import Form from "react-bootstrap/Form";
 
 const Search = props => {
   return (
-    <InputGroup className="mb-3">
+    <InputGroup className="search">
       {" "}
       <Form.Control
         placeholder="Search"

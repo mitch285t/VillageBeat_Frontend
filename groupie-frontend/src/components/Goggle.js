@@ -6,8 +6,10 @@ import ModalHeader from "react-bootstrap/ModalHeader";
 import ModalBody from "react-bootstrap/ModalBody";
 import ModalFooter from "react-bootstrap/ModalFooter";
 import Button from "react-bootstrap/Button";
+import { copyFile } from "fs";
 const AnyReactComponent = ({ text }) => <div>{text}</div>;
 const handleApiLoaded = (map, maps) => {};
+const copy = require("clipboard-copy");
 let modal = true;
 var closed = false;
 const getMapOptions = {
@@ -30,8 +32,12 @@ class Goggle extends Component {
     },
     zoom: 15
   };
-  handleClose = () => {
+  handleClose = event => {
     window.location.reload(true);
+  };
+  clipboard = location => {
+    copy(location);
+    alert("Copied!");
   };
 
   render() {
@@ -64,9 +70,20 @@ class Goggle extends Component {
               {console.log(this.props.lng)}
             </GoogleMapReact>
             <ModalFooter className="font_color">
-              <Button variant="outline-dark" onClick={this.handleClose}>
+              <Button
+                variant="outline-light"
+                onClick={event => this.props.handleHide(event)}
+              >
                 close
               </Button>
+
+              <Button
+                variant="outline-light"
+                onClick={() => this.clipboard(this.props.location)}
+              >
+                Copy
+              </Button>
+
               {this.props.location}
             </ModalFooter>
           </div>

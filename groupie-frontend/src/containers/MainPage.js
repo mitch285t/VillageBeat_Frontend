@@ -29,6 +29,10 @@ class MainPage extends Component {
       venues: []
     };
   }
+  handleHide = event =>
+    this.setState({
+      Clicked: !this.state.Clicked
+    });
   componentDidMount() {
     fetch(profileURL, {
       method: "GET",
@@ -60,6 +64,7 @@ class MainPage extends Component {
       <div className="main_page_color">
         {this.state.Clicked === true ? (
           <Goggle
+            handleHide={this.handleHide}
             lat={this.state.lat}
             lng={this.state.lng}
             location={this.state.location}
@@ -70,7 +75,9 @@ class MainPage extends Component {
         <br></br>
         <br></br>
         <div>
-          <h1>Welcome back, {window.localStorage.getItem("name")}!</h1>
+          <h1 className="welcome">
+            Welcome back, {window.localStorage.getItem("name")}!
+          </h1>
 
           <div>
             {/* {this.state.bands.map(band => {

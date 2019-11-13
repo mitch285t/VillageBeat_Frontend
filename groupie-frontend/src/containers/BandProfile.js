@@ -4,6 +4,7 @@ import Row from "react-bootstrap/row";
 import Col from "react-bootstrap/Col";
 import Button from "react-bootstrap/Button";
 import moment from "moment";
+import Jumbotron from "react-bootstrap/Jumbotron";
 import Tip from "../components/Tip.js";
 const BandShowURL = "http://localhost:3000/bands/";
 const userbandsURL = "http://localhost:3000/userbands";
@@ -15,6 +16,7 @@ class BandProfile extends React.Component {
       venues: [],
       shows: [],
       genres: [],
+      userbands: [],
       love: false
     };
   }
@@ -65,52 +67,50 @@ class BandProfile extends React.Component {
       <div className="band_profile">
         <div>
           <Container>
-            <Row>
-              <Col>
-                {this.state.band.name}
-                <br></br>
-                {this.state.band.desc}
-              </Col>
-              <Col>
-                {this.state.genres.map(genre => {
-                  return genre.name;
-                })}
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <ul>
-                  {this.state.venues.map(venue => {
-                    return (
-                      <li key={venue.id}>
-                        {venue.name}{" "}
-                        {this.state.shows.map(show => {
-                          if (show.venue_id === venue.id) {
-                            return moment(show.time).format(
-                              " hh:mm A, MMMM Do, YYYY "
-                            );
-                          }
-                        })}
-                      </li>
-                    );
+            <Jumbotron className="band-jumbotron">
+              {" "}
+              <Row>
+                <Col className="info-back">
+                  {this.state.band.name}
+                  <br></br>
+                  {this.state.band.desc}
+                </Col>
+                <Col className="genre-back">
+                  {this.state.genres.map(genre => {
+                    return genre.name;
                   })}
-                </ul>
-                {`Love given $ ${this.state.band.wallet}`}
-              </Col>
-              <Col></Col>
-            </Row>
+                </Col>
+              </Row>
+              <Row>
+                <Col className="venue-back">
+                  <ul>
+                    {this.state.venues.map(venue => {
+                      return (
+                        <li key={venue.id}>
+                          {venue.name}{" "}
+                          {this.state.shows.map(show => {
+                            if (show.venue_id === venue.id) {
+                              return moment(show.time).format(
+                                " hh:mm A, MMMM Do, YYYY "
+                              );
+                            }
+                          })}
+                        </li>
+                      );
+                    })}
+                  </ul>
+                  {`Love given $ ${this.state.band.wallet}`}
+                  <Tip
+                    userbands={this.state.userbands}
+                    band={this.state.band}
+                    followFunction={this.followFunction}
+                  />
+                </Col>
+              </Row>
+            </Jumbotron>
           </Container>
-
-          <Button
-            variant="outline-dark"
-            onClick={event => this.followFunction(event)}
-          >
-            Follow!
-          </Button>
         </div>
-        <>
-          <Tip band={this.state.band} followFunction={this.followFunction} />
-        </>
+        <div></div>
       </div>
     );
   }

@@ -38,6 +38,7 @@ class Tip extends React.Component {
     return (
       <div>
         <Button
+          className="tip-button"
           onClick={event => this.handleClick(event)}
           variant="outline-dark"
         >
@@ -50,6 +51,7 @@ class Tip extends React.Component {
             userWallet={this.state.userwallet}
             followFunction={this.props.followFunction}
             user={this.state.user}
+            userbands={this.props.userbands}
             band={this.props.band}
           />
         )}
