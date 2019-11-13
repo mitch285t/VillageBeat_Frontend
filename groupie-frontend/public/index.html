@@ -27,6 +27,14 @@
     <title>React App</title>
   </head>
   <body>
+    <script>
+      document.body.className = "fade";
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function(e) {
+        document.body.className = "";
+      });
+    </script>
     <script
       type="text/javascript"
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAU7yST2vulRFkJsvwdZI0xRXY_Qafm85E&libraries=places"

@@ -52,13 +52,14 @@ class Testing extends React.Component {
                             {this.props.bands[i].name}{" "}
                             {this.props.bands[i].genres}
                           </Card.Text>
-
+                        </Card.Body>{" "}
+                        <Card.Footer>
                           <VenuesList
                             show={show}
                             band={this.props.bands[i]}
                             handleLink={this.props.handleLink}
                           />
-                        </Card.Body>
+                        </Card.Footer>
                         <br />
                       </Card>
                     </Col>

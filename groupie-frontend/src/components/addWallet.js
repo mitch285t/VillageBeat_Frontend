@@ -62,7 +62,9 @@ class AddWallet extends Component {
     return (
       <div>
         <div>
-          <Button onClick={this.toggleModal}>add Funds!</Button>
+          <Button variant="light" onClick={this.toggleModal}>
+            add Funds!
+          </Button>
         </div>
         <Modal show={this.state.modalIsOpen}>
           <ModalHeader>Add Funds</ModalHeader>
